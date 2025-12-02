@@ -634,19 +634,31 @@ const AdventGrid = ({ openedDays, onDayClick }) => {
   const regularDays = MEMORIES.filter(m => m.day <= 24);
   const christmasDay = MEMORIES.find(m => m.day === 25);
 
-  // Dynamic sizing based on device - optimized for 8 rows x 3 cols on iPhone, 4 rows x 6 cols on desktop
-  const gridCols = isIPhone16ProMax ? 'grid-cols-3' : 'grid-cols-6'; // 8 rows x 3 cols on iPhone, 4 rows x 6 cols on desktop
-  const gridGap = isIPhone16ProMax ? 'gap-1.5' : isMobile ? 'gap-2' : 'gap-4';
-  const iconSize = isIPhone16ProMax ? 'w-3 h-3' : isMobile ? 'w-4 h-4' : 'w-4 h-4';
-  const textSize = isIPhone16ProMax ? 'text-sm' : isMobile ? 'text-base' : 'text-2xl';
-  const day25MaxW = isIPhone16ProMax ? 'max-w-[280px]' : isMobile ? 'max-w-xs' : 'max-w-lg';
-  const day25Icon = isIPhone16ProMax ? 'w-4 h-4' : isMobile ? 'w-6 h-6' : 'w-6 h-6';
-  const day25Text = isIPhone16ProMax ? 'text-xl' : isMobile ? 'text-3xl' : 'text-5xl';
-  const day25Padding = isIPhone16ProMax ? 'py-2 px-3' : isMobile ? 'py-3 px-3' : 'py-8 px-6';
-  const day25LabelSize = isIPhone16ProMax ? 'text-xs' : isMobile ? 'text-sm' : 'text-xl';
+  // ===== UPDATED TIGHTER SIZING =====
+  // 1. Columns: Using 5 columns on mobile makes the squares much smaller than 3 or 4
+  const gridCols = isMobile ? 'grid-cols-4' : 'grid-cols-6'; 
+  
+  // 2. Gap: Reduced to gap-1 (4px) or gap-0.5 (2px) for a very tight grid
+  const gridGap = isMobile ? 'gap-1' : 'gap-4';
+  
+  // 3. Icons: Smallest readable size
+  const iconSize = isMobile ? 'w-3 h-3' : 'w-4 h-4';
+  
+  // 4. Text: Hardcoded to 10px on mobile
+  const textSize = isMobile ? 'text-[10px]' : 'text-2xl';
+  
+  // 5. Margin: Space between Icon and Number (Removed on mobile)
+  const iconMargin = isMobile ? 'mb-0' : 'mb-1';
+
+  // 6. Day 25 Sizing: Drastically reduced padding
+  const day25MaxW = isMobile ? 'max-w-[200px]' : 'max-w-lg';
+  const day25Icon = isMobile ? 'w-4 h-4' : 'w-6 h-6';
+  const day25Text = isMobile ? 'text-base' : 'text-5xl';
+  const day25Padding = isMobile ? 'py-1 px-4' : 'py-8 px-6'; // Very small padding
+  const day25LabelSize = isMobile ? 'text-[10px]' : 'text-xl';
 
   return (
-    <div className={`w-full mx-auto space-y-2 ${isIPhone16ProMax ? 'max-w-md' : 'max-w-xl'}`}>
+    <div className={`w-full mx-auto space-y-2 ${isMobile ? 'max-w-xs' : 'max-w-xl'}`}>
       {/* Days 1-24 */}
       <div className={`grid ${gridCols} ${gridGap}`}>
         {regularDays.map((memory) => {
@@ -659,14 +671,15 @@ const AdventGrid = ({ openedDays, onDayClick }) => {
               onClick={() => isUnlocked && onDayClick(memory.day)}
               disabled={!isUnlocked}
               className={`
-                aspect-square rounded-xl flex flex-col items-center justify-center
+                aspect-square rounded-lg flex flex-col items-center justify-center
                 transition-all duration-300 relative overflow-hidden
-                ${!isUnlocked ? 'bg-red-950/50 border-2 border-red-700/30 opacity-50 cursor-not-allowed'
-                  : isOpened ? 'bg-gradient-to-br from-yellow-500 to-amber-600 border-2 border-yellow-300/70 shadow-lg cursor-pointer hover:scale-105'
-                  : 'bg-gradient-to-br from-green-600 to-green-700 border-2 border-green-400/50 cursor-pointer hover:scale-105 hover:shadow-xl'}
+                ${!isUnlocked ? 'bg-red-950/50 border border-red-700/30 opacity-50 cursor-not-allowed'
+                  : isOpened ? 'bg-gradient-to-br from-yellow-500 to-amber-600 border border-yellow-300/70 shadow-sm cursor-pointer'
+                  : 'bg-gradient-to-br from-green-600 to-green-700 border border-green-400/50 cursor-pointer shadow-sm'}
               `}
             >
-              <div className="mb-1">
+              {/* Applied the smaller margin here */}
+              <div className={iconMargin}>
                 {!isUnlocked ? (
                   <Lock className={iconSize + ' text-red-300/50'} />
                 ) : isOpened ? (
@@ -675,7 +688,7 @@ const AdventGrid = ({ openedDays, onDayClick }) => {
                   <Gift className={iconSize + ' text-white'} />
                 )}
               </div>
-              <div className={`${textSize} font-bold ${!isUnlocked ? 'text-red-300/50' : 'text-white'}`}>
+              <div className={`${textSize} font-bold leading-none ${!isUnlocked ? 'text-red-300/50' : 'text-white'}`}>
                 {memory.day}
               </div>
               {isUnlocked && !isOpened && (
@@ -686,29 +699,21 @@ const AdventGrid = ({ openedDays, onDayClick }) => {
         })}
       </div>
 
-      {/* Day 25 */}
+      {/* Day 25 - Compact Version */}
       {christmasDay && (
         <div className="flex justify-center">
           <button
             onClick={() => isDayUnlocked(25) && onDayClick(25)}
             disabled={!isDayUnlocked(25)}
             className={`
-              w-full ${day25MaxW} rounded-2xl flex flex-col items-center justify-center
+              w-full ${day25MaxW} rounded-xl flex flex-col items-center justify-center
               transition-all duration-300 relative overflow-hidden ${day25Padding}
-              ${!isDayUnlocked(25) ? 'bg-red-950/50 border-4 border-red-700/30 opacity-50 cursor-not-allowed'
-                : openedDays.includes(25) ? 'bg-gradient-to-br from-yellow-400 via-yellow-500 to-amber-600 border-4 border-yellow-300 shadow-2xl cursor-pointer hover:scale-105'
-                : 'bg-gradient-to-br from-yellow-500 via-amber-500 to-yellow-600 border-4 border-yellow-400 cursor-pointer hover:scale-105 hover:shadow-2xl animate-pulse'}
+              ${!isDayUnlocked(25) ? 'bg-red-950/50 border-2 border-red-700/30 opacity-50 cursor-not-allowed'
+                : openedDays.includes(25) ? 'bg-gradient-to-br from-yellow-400 via-yellow-500 to-amber-600 border-2 border-yellow-300 shadow-lg cursor-pointer'
+                : 'bg-gradient-to-br from-yellow-500 via-amber-500 to-yellow-600 border-2 border-yellow-400 cursor-pointer animate-pulse'}
             `}
           >
-            {isDayUnlocked(25) && !openedDays.includes(25) && (
-              <>
-                <Star className="absolute top-2 left-2 w-4 h-4 text-white animate-pulse" />
-                <Star className="absolute top-2 right-2 w-4 h-4 text-white animate-pulse" style={{ animationDelay: '0.5s' }} />
-                <Star className="absolute bottom-2 left-4 w-3 h-3 text-white animate-pulse" style={{ animationDelay: '0.25s' }} />
-                <Star className="absolute bottom-2 right-4 w-3 h-3 text-white animate-pulse" style={{ animationDelay: '0.75s' }} />
-              </>
-            )}
-            <div className="mb-2">
+            <div className={iconMargin}>
               {!isDayUnlocked(25) ? (
                 <Lock className={day25Icon + ' text-red-300/50'} />
               ) : openedDays.includes(25) ? (
@@ -718,14 +723,11 @@ const AdventGrid = ({ openedDays, onDayClick }) => {
               )}
             </div>
             <div className="text-center">
-              <div className={`${day25Text} font-bold mb-1 ${!isDayUnlocked(25) ? 'text-red-300/50' : 'text-white'}`}>25</div>
+              <div className={`${day25Text} font-bold leading-tight ${!isDayUnlocked(25) ? 'text-red-300/50' : 'text-white'}`}>25</div>
               {isDayUnlocked(25) && (
-                <div className={`text-white ${day25LabelSize} font-semibold`}>🎄 Christmas Day! 🎄</div>
+                <div className={`text-white ${day25LabelSize} font-semibold leading-none mt-0.5`}>Christmas!</div>
               )}
             </div>
-            {isDayUnlocked(25) && !openedDays.includes(25) && (
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-shimmer" />
-            )}
           </button>
         </div>
       )}
@@ -818,7 +820,7 @@ const App = () => {
     // Mobile
     sizes: ["120px", "100px"],
     bottom: ["5vh", "6vh"], 
-    horizontal: ["30px", "40px"]
+    horizontal: ["20px", "30px"]
   } : {
     // Desktop
     sizes: ["250px", "200px"], 
@@ -831,7 +833,7 @@ const App = () => {
     // Mobile
     sizes: ["140px", "140px"],
     bottom: ["5vh", "5vh"],
-    horizontal: ["30px", "30px"]
+    horizontal: ["20px", "20px"]
   } : {
     // Desktop
     sizes: ["250px", "250px"],
