@@ -13,10 +13,11 @@ import day2Img from './img/day2.png'
 import day3Img from './img/day3.png'
 import day4Img from './img/day4.png'
 import day5Img from './img/day5.png'
+import day6Img from './img/day6.png'
 
 // ===== DEBUG SETTING =====
 // Set to a number (1-25) to simulate that date in December, or null for real date
-const DEBUG_DATE = null; // Set to null for production
+const DEBUG_DATE = 6; // Set to null for production
 
 // ===== USER CONFIGURATION =====
 const USERS = {
@@ -273,8 +274,15 @@ const MEMORIES = [
     content: 'This photo was taken on the day that I said I loved you. I remember that you were basically watching me drink so much. While I was drunk I was cuddled up to you and I felt so good and safe with you. I really wanted to say that I loved you but I was so shy that I nearly didn\'t say it. I basically whispered it into your ear.',
     image: day5Img,
   },
-  ...Array.from({ length: 19 }, (_, i) => {
-    const day = i + 6;
+  {
+    day: 6,
+    type: 'image',
+    title: 'Even the Small Moments',
+    content: 'Every so often when I go through my photos, I enjoy taking the time to look at and reminisce about the time we got to spend together in person. At the time, I feel like we took it for granted. I love reminiscing about just having you in my arms and having the privilege of just looking at how beuatiful you are. In the moment I took this photo, I remembered that we would be going long disance in 2 months and we were just on our phones. Knowing that, I specifically took this picture so I can look back at it when I still had you in my arms.',
+    image: day6Img,
+  },
+  ...Array.from({ length: 18 }, (_, i) => {
+    const day = i + 7;
     const types = ['text', 'image', 'challenge'];
     const type = types[i % 3];
     
@@ -428,10 +436,13 @@ const LoginPage = ({ onLoginSuccess }) => {
     }
   };
 
-  const validateAnswers = () => {
+const validateAnswers = () => {
+    const normalize = (text) => text ? text.toLowerCase().trim().replace(/\s+/g, ' ') : '';
+
     const allCorrect = quizQuestions.every((q) => {
-      const userAnswer = (answers[q.id] || '').trim().toLowerCase();
-      const correctAnswer = q.answer.toLowerCase();
+      const userAnswer = normalize(answers[q.id]);
+      const correctAnswer = normalize(q.answer);
+      
       return userAnswer === correctAnswer;
     });
 
@@ -439,9 +450,6 @@ const LoginPage = ({ onLoginSuccess }) => {
       onLoginSuccess(selectedUser);
     } else {
       setError('One or more answers are incorrect. Try again!');
-      setAnswers({});
-      setShowHints({});
-      setQuizQuestions(selectRandomQuestions());
     }
   };
 
