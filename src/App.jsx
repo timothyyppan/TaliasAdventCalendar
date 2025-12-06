@@ -14,10 +14,11 @@ import day3Img from './img/day3.png'
 import day4Img from './img/day4.png'
 import day5Img from './img/day5.png'
 import day6Img from './img/day6.png'
+import day7Img from './img/day7.png'
 
 // ===== DEBUG SETTING =====
 // Set to a number (1-25) to simulate that date in December, or null for real date
-const DEBUG_DATE = 6; // Set to null for production
+const DEBUG_DATE = null; // Set to null for production
 
 // ===== USER CONFIGURATION =====
 const USERS = {
@@ -281,8 +282,15 @@ const MEMORIES = [
     content: 'Every so often when I go through my photos, I enjoy taking the time to look at and reminisce about the time we got to spend together in person. At the time, I feel like we took it for granted. I love reminiscing about just having you in my arms and having the privilege of just looking at how beuatiful you are. In the moment I took this photo, I remembered that we would be going long disance in 2 months and we were just on our phones. Knowing that, I specifically took this picture so I can look back at it when I still had you in my arms.',
     image: day6Img,
   },
+  {
+    day: 7,
+    type: 'image',
+    title: 'Matching Stitch!',
+    content: 'Darling, look at me and you matching with stitch hats. We are so cute when we match. This is us at Disneyland and you were going crazy for Stitch. Honestly when I brought you in to watch Lilo and Stitch, I knew you would like it, but I didn\'t know you would love Stitch this much. Either way, I love that you did as I was so happy to watch you be happy wearing so much Stitch merchandise around Disneyland that everyone, even children, stopped to look at you. I love you darling ❤️',
+    image: day7Img,
+  },
   ...Array.from({ length: 18 }, (_, i) => {
-    const day = i + 7;
+    const day = i + 8;
     const types = ['text', 'image', 'challenge'];
     const type = types[i % 3];
     
