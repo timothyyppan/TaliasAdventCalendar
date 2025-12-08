@@ -15,10 +15,11 @@ import day4Img from './img/day4.png'
 import day5Img from './img/day5.png'
 import day6Img from './img/day6.png'
 import day7Img from './img/day7.png'
+import day8Img from './img/day8.png'
 
 // ===== DEBUG SETTING =====
 // Set to a number (1-25) to simulate that date in December, or null for real date
-const DEBUG_DATE = null; // Set to null for production
+const DEBUG_DATE = null;/// Set to null for production
 
 // ===== USER CONFIGURATION =====
 const USERS = {
@@ -289,8 +290,15 @@ const MEMORIES = [
     content: 'Darling, look at me and you matching with stitch hats. We are so cute when we match. This is us at Disneyland and you were going crazy for Stitch. Honestly when I brought you in to watch Lilo and Stitch, I knew you would like it, but I didn\'t know you would love Stitch this much. Either way, I love that you did as I was so happy to watch you be happy wearing so much Stitch merchandise around Disneyland that everyone, even children, stopped to look at you. I love you darling ❤️',
     image: day7Img,
   },
+  {
+    day: 8,
+    type: 'image',
+    title: 'Hiking...',
+    content: 'Okay honey, before you saying anything about the photos, I know they aren\'t the most flattering pictures of us, but to me they mean a lot. As its obvious in the pictures, you weren\'t having a good time hiking, but because I wanted to go you still did it with me. I really appreciate it from the bottom of my heart because not only did I really enjoy it, it was really memorable for me (and I guess you for other more traumatic reasons...) I love you so much honey ❤️, and no matter what we do together, I will always cherish the time we spend together. (btw I owe you one for making you hike lol)',
+    image: day8Img,
+  },
   ...Array.from({ length: 18 }, (_, i) => {
-    const day = i + 8;
+    const day = i + 9;
     const types = ['text', 'image', 'challenge'];
     const type = types[i % 3];
     
