@@ -20,7 +20,7 @@ import day9Img from './img/day9.png'
 
 // ===== DEBUG SETTING =====
 // Set to a number (1-25) to simulate that date in December, or null for real date
-const DEBUG_DATE = 9;/// Set to null for production
+const DEBUG_DATE = null; /// Set to null for production
 
 // ===== USER CONFIGURATION =====
 const USERS = {
