@@ -16,10 +16,11 @@ import day5Img from './img/day5.png'
 import day6Img from './img/day6.png'
 import day7Img from './img/day7.png'
 import day8Img from './img/day8.png'
+import day9Img from './img/day9.png'
 
 // ===== DEBUG SETTING =====
 // Set to a number (1-25) to simulate that date in December, or null for real date
-const DEBUG_DATE = null;/// Set to null for production
+const DEBUG_DATE = 9;/// Set to null for production
 
 // ===== USER CONFIGURATION =====
 const USERS = {
@@ -297,8 +298,15 @@ const MEMORIES = [
     content: 'Okay honey, before you saying anything about the photos, I know they aren\'t the most flattering pictures of us, but to me they mean a lot. As its obvious in the pictures, you weren\'t having a good time hiking, but because I wanted to go you still did it with me. I really appreciate it from the bottom of my heart because not only did I really enjoy it, it was really memorable for me (and I guess you for other more traumatic reasons...) I love you so much honey ❤️, and no matter what we do together, I will always cherish the time we spend together. (btw I owe you one for making you hike lol)',
     image: day8Img,
   },
+  {
+    day: 9,
+    type: 'image',
+    title: 'When I Finally Understood How Much You Love Me',
+    content: 'I\'m sorry for the bad photo for the second day in a row, but I took this picture because in this moment you melted my heart. When we went to go eat food at the 24hr spa, I said I really liked crawfish. But being the spoiled brat I am, I said that I wouldn\'t eat any because I didn\'t want to get my hands dirty. I was really fine with eating other things but I vividly remember you instantly going to grab an entire plate of them, even though you don\'t know how to peel them. I watched you look up tutorials and struggle (as you can see on your face), and you were so happy to watch me eat them. That\'s when I realized how much you love me and how much you\'re willing to do for me. I love you my future wife ❤️',
+    image: day9Img,
+  },
   ...Array.from({ length: 18 }, (_, i) => {
-    const day = i + 9;
+    const day = i + 10;
     const types = ['text', 'image', 'challenge'];
     const type = types[i % 3];
     
