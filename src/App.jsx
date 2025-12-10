@@ -305,8 +305,14 @@ const MEMORIES = [
     content: 'I\'m sorry for the bad photo for the second day in a row, but I took this picture because in this moment you melted my heart. When we went to go eat food at the 24hr spa, I said I really liked crawfish. But being the spoiled brat I am, I said that I wouldn\'t eat any because I didn\'t want to get my hands dirty. I was really fine with eating other things but I vividly remember you instantly going to grab an entire plate of them, even though you don\'t know how to peel them. I watched you look up tutorials and struggle (as you can see on your face), and you were so happy to watch me eat them. That\'s when I realized how much you love me and how much you\'re willing to do for me. I love you my future wife ❤️',
     image: day9Img,
   },
+  {
+    day: 10,
+    type: 'text',
+    title: 'Appreaciating You',
+    content: 'I thought for today I would slightly switch up the format. Instead of talking about a memory of us, I thought it would be nice to reflect on how much I appreciate you and really express that to you. I appreciate how commited, loyal, understanding, and loving you are. There\'s been so many times where I have been stinky, stupid, unreasonable, and selfish. In those times, you have always been there for me, stuck by my side, and given me more chances than I deserve. I don\'t give you enough credit for that and I wanted to just express my gratitude for that. Furthermore, I appreciate your beauty and personality. I believe its almost impossible to find someone that is as pretty as you, but also as charming and funny as you are. You really are special (not in that way) and I want you to know that I love you, and thank you for picking me 🥺',
+  },
   ...Array.from({ length: 18 }, (_, i) => {
-    const day = i + 10;
+    const day = i + 11;
     const types = ['text', 'image', 'challenge'];
     const type = types[i % 3];
     
