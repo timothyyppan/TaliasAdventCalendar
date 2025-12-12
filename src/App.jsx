@@ -17,10 +17,15 @@ import day6Img from './img/day6.png'
 import day7Img from './img/day7.png'
 import day8Img from './img/day8.png'
 import day9Img from './img/day9.png'
+import day11Img from './img/day11.png'
+import day12Img from './img/day12.png'
+import day13Video from './img/day13.mp4'
+import day14Img from './img/day14.png'
+import day15Img from './img/day15.png'
 
 // ===== DEBUG SETTING =====
 // Set to a number (1-25) to simulate that date in December, or null for real date
-const DEBUG_DATE = null; /// Set to null for production
+const DEBUG_DATE = 25; /// Set to null for production
 
 // ===== USER CONFIGURATION =====
 const USERS = {
@@ -311,8 +316,42 @@ const MEMORIES = [
     title: 'Appreaciating You',
     content: 'I thought for today I would slightly switch up the format. Instead of talking about a memory of us, I thought it would be nice to reflect on how much I appreciate you and really express that to you. I appreciate how commited, loyal, understanding, and loving you are. There\'s been so many times where I have been stinky, stupid, unreasonable, and selfish. In those times, you have always been there for me, stuck by my side, and given me more chances than I deserve. I don\'t give you enough credit for that and I wanted to just express my gratitude for that. Furthermore, I appreciate your beauty and personality. I believe its almost impossible to find someone that is as pretty as you, but also as charming and funny as you are. You really are special (not in that way) and I want you to know that I love you, and thank you for picking me 🥺',
   },
+  {
+    day: 11,
+    type: 'image',
+    title: 'Chicky!!',
+    content: 'Baby look 🥹🥹🥹, its Chicky. I came across this photo of when we first bought Chicky and I just instantly remembered how happy you were. Specifically, when we were in the hotel elevator in front of two other people and you were so happy that you started making it walk on your hand in front of them. You were so cute 🥹, and it was even funnier when we left the elevator, the other people couldn\'t even wait until the door closed before they burst out laughing. It was really funnny at the time but now that I think on it, I find it so endearing that you loved our Chicky so much that you didn\'t care about what other people thought about us (in a good way). I love you and our Chicky ❤️❤️❤️',
+    image: day11Img,
+  },
+  {
+    day: 12,
+    type: 'image',
+    title: 'Our Last Night Together',
+    content: 'Darling, the bad photos are unfortunately back... But I wanted to share this memory with you. This photo was taken on our last night together before we had to go long distance again. I remember feeling so sad that you had to go next day, but at the same time I felt so grateful that I got to spend that time with you. You were in my arms so nicely and cuddly and in my hoodie 🙂‍↔️. But the next day you woke up so funny that I had to take a picture for you darling. You look amazing ❤️. I love you so much baby, and I can\'t wait until we can be together again ❤️❤️❤️',
+    image: day12Img,
+  },
+  {
+    day: 13,
+    type: 'video',
+    title: 'My Special Snowflake...',
+    content: 'Take a minute to watch this video baby! I forgot that I even had this video but it was from all the way back in May. Its so funny because I managed to catch you being funny and quirky on camera. But whats more to me is that listening to the way you talked back then and listening to the way you talked now is so different. Your English is actually so much better now than it was before. I don\'t think I noticed just because it slowly got better over time, but I\'m so proud of you and also thankful for you learning to speak English. My beatiful special snowflake darling 🙂‍↔️🥹❤️',
+    video: day13Video,
+  },
+  {
+    day: 14,
+    type: 'image',
+    title: 'The Birth of our Son Theo!',
+    content: 'Baby, did you know that our son Theo has the same birthday as you? Look at how cute and how small and what a young man Theo is here. He is so happy to get to meet his mama on her birthday and to be in a loving family. In all seriousness I found it so cute how the other day you mentioned that you can\'t even sleep without Theo and you start tweaking if you can\'t find him. I\'m glad that you\'re able to find comfort with our son when I can\'t be there with you in person. However, I do miss my little boy so much and can\'t wait to see both of you again. I love you both so much ❤️❤️❤️',
+  },
+  {
+    day: 15,
+    type: 'image',
+    title: 'Our Promise',
+    content: 'My future wife, I wanted to share this photo with you because its so special to me. This photo was taken on the day that we made rings to signify our promise to be together forever and marry. I remember feeling so happy when you first said that you want to be my wife and when we first started calling eachother our future husband/wife. I know that we have a long way to go before we can actually be married, but just knowing that we have that promise makes me so happy. I love you so much baby, and I can\'t wait to spend the rest of my life with you ❤️❤️❤️',
+    image: day15Img,
+  },
   ...Array.from({ length: 18 }, (_, i) => {
-    const day = i + 11;
+    const day = i + 16;
     const types = ['text', 'image', 'challenge'];
     const type = types[i % 3];
     
@@ -595,7 +634,6 @@ const validateAnswers = () => {
     </div>
   );
 };
-
 // ===== MEMORY MODAL COMPONENT =====
 const MemoryModal = ({ memory, onClose }) => {
   if (!memory) return null;
@@ -614,6 +652,8 @@ const MemoryModal = ({ memory, onClose }) => {
             </div>
           </div>
           <h2 className="text-2xl sm:text-3xl font-bold text-center mb-8 text-red-900">{memory.title}</h2>
+          
+          {/* TEXT TYPE */}
           {memory.type === 'text' && (
             <div className="space-y-4">
               <div className="bg-white/80 backdrop-blur rounded-xl p-6 sm:p-8 shadow-inner border-2 border-red-200">
@@ -621,7 +661,9 @@ const MemoryModal = ({ memory, onClose }) => {
               </div>
             </div>
           )}
-{memory.type === 'image' && (
+
+          {/* IMAGE TYPE */}
+          {memory.type === 'image' && (
             <div className="space-y-6">
               <div className="bg-white/80 backdrop-blur rounded-xl p-6 shadow-inner border-2 border-red-200">
                 <p className="text-base sm:text-lg leading-relaxed text-gray-700 text-center">{memory.content}</p>
@@ -640,6 +682,32 @@ const MemoryModal = ({ memory, onClose }) => {
               )}
             </div>
           )}
+
+          {/* ✨ NEW VIDEO TYPE ADDED HERE ✨ */}
+          {memory.type === 'video' && (
+            <div className="space-y-6">
+              <div className="bg-white/80 backdrop-blur rounded-xl p-6 shadow-inner border-2 border-red-200">
+                <p className="text-base sm:text-lg leading-relaxed text-gray-700 text-center">{memory.content}</p>
+              </div>
+              
+              {memory.video && (
+                <div className="flex justify-center">
+                  <div className="rounded-xl overflow-hidden shadow-xl border-4 border-white w-full">
+                    <video 
+                      controls 
+                      className="w-full h-auto max-h-[60vh]"
+                      preload="metadata"
+                    >
+                      <source src={memory.video} type="video/mp4" />
+                      Your browser does not support the video tag.
+                    </video>
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* CHALLENGE TYPE */}
           {memory.type === 'challenge' && (
             <div className="space-y-4">
               <div className="bg-gradient-to-br from-yellow-400 to-orange-500 rounded-xl p-6 sm:p-8 shadow-2xl border-4 border-yellow-300 transform rotate-1">
@@ -654,6 +722,7 @@ const MemoryModal = ({ memory, onClose }) => {
               </div>
             </div>
           )}
+
           <div className="flex justify-center gap-4 mt-8 opacity-50">
             <Heart className="w-6 h-6 text-red-500 fill-red-500" />
             <Heart className="w-4 h-4 text-red-400 fill-red-400" />
