@@ -25,7 +25,7 @@ import day15Img from './img/day15.png'
 
 // ===== DEBUG SETTING =====
 // Set to a number (1-25) to simulate that date in December, or null for real date
-const DEBUG_DATE = 25; /// Set to null for production
+const DEBUG_DATE = null; /// Set to null for production
 
 // ===== USER CONFIGURATION =====
 const USERS = {
@@ -342,6 +342,7 @@ const MEMORIES = [
     type: 'image',
     title: 'The Birth of our Son Theo!',
     content: 'Baby, did you know that our son Theo has the same birthday as you? Look at how cute and how small and what a young man Theo is here. He is so happy to get to meet his mama on her birthday and to be in a loving family. In all seriousness I found it so cute how the other day you mentioned that you can\'t even sleep without Theo and you start tweaking if you can\'t find him. I\'m glad that you\'re able to find comfort with our son when I can\'t be there with you in person. However, I do miss my little boy so much and can\'t wait to see both of you again. I love you both so much ❤️❤️❤️',
+    image: day14Img,
   },
   {
     day: 15,
