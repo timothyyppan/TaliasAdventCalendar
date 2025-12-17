@@ -22,6 +22,11 @@ import day12Img from './img/day12.png'
 import day13Video from './img/day13.mp4'
 import day14Img from './img/day14.png'
 import day15Img from './img/day15.png'
+import day16Img from './img/day16.png'
+import day17Video from './img/day17.mp4'
+import day18Img from './img/day18picture.png'
+import day18Video from './img/day18video.mp4'
+import day19Img from './img/day19.png'
 
 // ===== DEBUG SETTING =====
 // Set to a number (1-25) to simulate that date in December, or null for real date
@@ -351,8 +356,30 @@ const MEMORIES = [
     content: 'My future wife, I wanted to share this photo with you because its so special to me. This photo was taken on the day that we made rings to signify our promise to be together forever and marry. I remember feeling so happy when you first said that you want to be my wife and when we first started calling eachother our future husband/wife. I know that we have a long way to go before we can actually be married, but just knowing that we have that promise makes me so happy. I love you so much baby, and I can\'t wait to spend the rest of my life with you ❤️❤️❤️',
     image: day15Img,
   },
+  {
+    day: 16,
+    type: 'image',
+    title: 'Feet...',
+    content: 'I know this isn\'t what you were expecting to see today, but its your feet! You have such pretty beautiful feet darling 🙂‍↔️. When you first showed me your feet like this, and especially with your toe socks, I was a bit shocked. But honestly it was hilarious and I still laugh about it today whenever I think about you doing it. This is one of the reasons why I love you so much baby, you have the best sense of humour, and thats what makes you special to me 😉. I love you my beautiful girl ❤️❤️❤️',
+    image: day16Img
+  },
+  {
+    day: 17,
+    type: 'video',
+    title: 'A Fun Little Video',
+    content: 'If I\'m being honest, I have no idea what was happening in this video lol. I was going through my gallery and I found this and it just instantly brought me back to Shanghai. We had just gone to the FamilyMart at the end of my street, and you bought a bunch of these Kinder eggs. We were just being silly on my bed and you just started tweaking out for some reason. I just knew I had to take a video of you and show it to you one day, just because I think it really shows a side of you that you normally don\'t share with other people except for me🙂‍↔️🥺! I love you so much baby ❤️❤️❤️', 
+    video: day17Video,
+  },
+  {
+    day: 18,
+    type: 'mixed',
+    title: 'How to Train Your Dragon',
+    content: 'Baby 🥺 I really loved it when we watched How to Train Your Dragon together! I especially loved how you enjoyed it so much so we watched all three movies when we went home. How to Train Your Dragon is one of my favourite childhood movies so it really made me happy that you loved it! An unexpected side effect was when we bought matching plushies that ended up roaring. I took a beautiful picture of him, and also found a video of him roaring inside my bag. To this day, whenever I touch my desk a little bit, he still roars and makes noise lol. I miss you and I love you my future wife ❤️❤️❤️',
+    image: day18Img,
+    video: day18Video,
+  },
   ...Array.from({ length: 18 }, (_, i) => {
-    const day = i + 16;
+    const day = i + 19;
     const types = ['text', 'image', 'challenge'];
     const type = types[i % 3];
     
@@ -634,15 +661,15 @@ const validateAnswers = () => {
       </div>
     </div>
   );
-};
-// ===== MEMORY MODAL COMPONENT =====
+
+};// ===== MEMORY MODAL COMPONENT =====
 const MemoryModal = ({ memory, onClose }) => {
   if (!memory) return null;
 
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
       <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={onClose} />
-      <div className="relative bg-gradient-to-br from-red-50 to-green-50 rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+      <div className="relative bg-gradient-to-br from-red-50 to-green-50 rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
         <button onClick={onClose} className="absolute top-4 right-4 z-10 w-10 h-10 flex items-center justify-center bg-red-600 hover:bg-red-700 text-white rounded-full transition-all duration-200 hover:scale-110 shadow-lg" aria-label="Close">
           <span className="text-2xl font-bold">×</span>
         </button>
@@ -656,10 +683,8 @@ const MemoryModal = ({ memory, onClose }) => {
           
           {/* TEXT TYPE */}
           {memory.type === 'text' && (
-            <div className="space-y-4">
-              <div className="bg-white/80 backdrop-blur rounded-xl p-6 sm:p-8 shadow-inner border-2 border-red-200">
-                {memory.content}
-              </div>
+            <div className="bg-white/80 backdrop-blur rounded-xl p-6 sm:p-8 shadow-inner border-2 border-red-200">
+              {memory.content}
             </div>
           )}
 
@@ -669,42 +694,58 @@ const MemoryModal = ({ memory, onClose }) => {
               <div className="bg-white/80 backdrop-blur rounded-xl p-6 shadow-inner border-2 border-red-200">
                 <p className="text-base sm:text-lg leading-relaxed text-gray-700 text-center">{memory.content}</p>
               </div>
-              
               {memory.image && (
                 <div className="flex justify-center">
                   <div className="rounded-xl overflow-hidden shadow-xl border-4 border-white max-w-[80%] sm:max-w-[60%] max-h-[60vh]">
-                    <img 
-                      src={memory.image} 
-                      alt={memory.title} 
-                      className="w-full h-full object-contain" 
-                    />
+                    <img src={memory.image} alt={memory.title} className="w-full h-full object-contain" />
                   </div>
                 </div>
               )}
             </div>
           )}
 
-          {/* ✨ NEW VIDEO TYPE ADDED HERE ✨ */}
+          {/* VIDEO TYPE */}
           {memory.type === 'video' && (
             <div className="space-y-6">
               <div className="bg-white/80 backdrop-blur rounded-xl p-6 shadow-inner border-2 border-red-200">
                 <p className="text-base sm:text-lg leading-relaxed text-gray-700 text-center">{memory.content}</p>
               </div>
-              
               {memory.video && (
                 <div className="flex justify-center">
                   <div className="rounded-xl overflow-hidden shadow-xl border-4 border-white w-full">
-                    <video 
-                      controls 
-                      className="w-full h-auto max-h-[60vh]"
-                      preload="metadata"
-                    >
+                    <video controls className="w-full h-auto max-h-[60vh]" preload="metadata">
                       <source src={memory.video} type="video/mp4" />
-                      Your browser does not support the video tag.
                     </video>
                   </div>
                 </div>
               )}
+            </div>
+          )}
+
+          {/* ✨ NEW MIXED TYPE (SIDE BY SIDE) ✨ */}
+          {memory.type === 'mixed' && (
+            <div className="space-y-6">
+              <div className="bg-white/80 backdrop-blur rounded-xl p-6 shadow-inner border-2 border-red-200">
+                <p className="text-base sm:text-lg leading-relaxed text-gray-700 text-center">{memory.content}</p>
+              </div>
+              
+              <div className="flex flex-col md:flex-row gap-4 items-center justify-center">
+                {/* Left Side: Image */}
+                {memory.image && (
+                  <div className="w-full md:w-1/2 rounded-xl overflow-hidden shadow-xl border-4 border-white">
+                    <img src={memory.image} alt="Memory" className="w-full h-auto object-cover" />
+                  </div>
+                )}
+                
+                {/* Right Side: Video */}
+                {memory.video && (
+                  <div className="w-full md:w-1/2 rounded-xl overflow-hidden shadow-xl border-4 border-white">
+                    <video controls className="w-full h-auto" preload="metadata">
+                      <source src={memory.video} type="video/mp4" />
+                    </video>
+                  </div>
+                )}
+              </div>
             </div>
           )}
 
@@ -715,11 +756,6 @@ const MemoryModal = ({ memory, onClose }) => {
                 <div className="bg-white/20 backdrop-blur rounded-lg p-6 border-2 border-white/50">
                   <p className="text-lg sm:text-xl font-bold leading-relaxed text-white text-center drop-shadow-lg">{memory.content}</p>
                 </div>
-              </div>
-              <div className="flex items-center justify-center gap-2 text-orange-700 font-semibold">
-                <span className="text-2xl">🎯</span>
-                <span>Are you up for the challenge?</span>
-                <span className="text-2xl">🎯</span>
               </div>
             </div>
           )}
