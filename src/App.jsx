@@ -378,8 +378,15 @@ const MEMORIES = [
     image: day18Img,
     video: day18Video,
   },
+  {
+    day: 19,
+    type: 'image',
+    title: 'Us as Clay!',
+    content: 'This is us as clay darling! This is me and you together as clay cats, even if we can\'t be together in person right now. I\'m so happy that you suggested we make clay figurines when we did because I love looking at our figurines that we made together. My only regret is that we didn\'t make more together when we weere together. But that\'s okay becasue we can always do more when we next meet up. I hope that one day we can be like those figurines 🥺, together forever in person 🥺🥺🥺🥺🥺🥺🥺. I miss you the most, and you\'re the only thign I would ever need in the world my love of my life. I love you ❤️',
+    image: day19Img,
+  },
   ...Array.from({ length: 18 }, (_, i) => {
-    const day = i + 19;
+    const day = i + 20;
     const types = ['text', 'image', 'challenge'];
     const type = types[i % 3];
     
