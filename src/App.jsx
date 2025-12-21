@@ -27,6 +27,8 @@ import day17Video from './img/day17.mp4'
 import day18Img from './img/day18picture.png'
 import day18Video from './img/day18video.mp4'
 import day19Img from './img/day19.png'
+import day20Video from './img/day20video.mp4'
+import day21Img from './img/day21.png'
 
 // ===== DEBUG SETTING =====
 // Set to a number (1-25) to simulate that date in December, or null for real date
@@ -385,8 +387,22 @@ const MEMORIES = [
     content: 'This is us as clay darling! This is me and you together as clay cats, even if we can\'t be together in person right now. I\'m so happy that you suggested we make clay figurines when we did because I love looking at our figurines that we made together. My only regret is that we didn\'t make more together when we weere together. But that\'s okay becasue we can always do more when we next meet up. I hope that one day we can be like those figurines 🥺, together forever in person 🥺🥺🥺🥺🥺🥺🥺. I miss you the most, and you\'re the only thign I would ever need in the world my love of my life. I love you ❤️',
     image: day19Img,
   },
+  {
+    day: 20,
+    type: 'video',
+    title: 'Kisses 🥺',
+    content: 'This video of you makes me so happy. Your kisses are so cute here because they sound like a cat. You look amazing here and I miss you so much. I listen to this video sometimes when I miss you to remind me of getting kissed by you 😔. I miss your plump lips, the smell of your breath, your beautiful eyes, and the way you taste. I can\'t wait until I get the chance to kiss you again. We should send each other more kissing videos! I love you darling ❤️❤️',
+    video: day20Video,
+  },
+  {
+    day: 21,
+    type: 'image',
+    title: 'My Dripped Out Wife',
+    content: 'Baby you look so good, you\'re decked out in drip. Stitch shirt, Goyard bag, Labubu, beautiful jorts, stunning legs, luscious hair, baby you have it all. You\'re so cute in this picture because you\'re wearing so much of the stuff that I bought you. I love it when you wear it because I know that my money was spent making you happy and beautiful. I want to buy you more things so that you can look cute, especially so that we can match! My drippy swaggy wife ❤️',
+    image: day21Img,
+  },
   ...Array.from({ length: 18 }, (_, i) => {
-    const day = i + 20;
+    const day = i + 22;
     const types = ['text', 'image', 'challenge'];
     const type = types[i % 3];
     
