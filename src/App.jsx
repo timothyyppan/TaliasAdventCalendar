@@ -29,6 +29,8 @@ import day18Video from './img/day18video.mp4'
 import day19Img from './img/day19.png'
 import day20Video from './img/day20video.mp4'
 import day21Img from './img/day21.png'
+import day22Img from './img/day22.png'
+import day23Img from './img/day23.png'
 
 // ===== DEBUG SETTING =====
 // Set to a number (1-25) to simulate that date in December, or null for real date
@@ -401,8 +403,22 @@ const MEMORIES = [
     content: 'Baby you look so good, you\'re decked out in drip. Stitch shirt, Goyard bag, Labubu, beautiful jorts, stunning legs, luscious hair, baby you have it all. You\'re so cute in this picture because you\'re wearing so much of the stuff that I bought you. I love it when you wear it because I know that my money was spent making you happy and beautiful. I want to buy you more things so that you can look cute, especially so that we can match! My drippy swaggy wife ❤️',
     image: day21Img,
   },
+  {
+    day: 22,
+    type: 'image',
+    title: 'FaceTime Photos!',
+    content: 'I know that you would call these photos bad but I personally love them baby. One of my favourite things to do when I\'m on FaceTime with you is to take candid photos of you when you aren\'t expecting it. I think you\'re very beautiful in every one of these pictures, especially your muslim boy picture 🥺❤️. If I\'m being honest, I want to take as many as these beautiful pictures of you as I can because I think it would be cute if during our wedding reception, we had a section where we talk about our period of long distance. During that talk, I think it would be very cute to display a gallery of all of the pictures we took of each other on FaceTime! I know you probably won\'t let me but I think its a very cute idea so I hope you can consider it 🥺🥺🥺. I love you so much my darling ❤️❤️❤️',
+    image: day22Img,
+  },
+  {
+    day: 23,
+    type: 'image',
+    title: 'Talicorn On Vacation',
+    content: 'Talicorn is having a good time on vacation in Cancun. She enjoys the sunshine and has a beautiful bed to sleep on everynight. She tells me she is well relaxed. Although she enjoys spending time with her Papa and draining beers with him, she also tells me she misses her Mama and wants to meet her. She is really looking forwards to meeting her Mama and getting to cuddle with her. With love, from Talicorn and your love in Cancun ❤️☀️🏖️❤️!',
+    image: day23Img,
+  },
   ...Array.from({ length: 18 }, (_, i) => {
-    const day = i + 22;
+    const day = i + 24;
     const types = ['text', 'image', 'challenge'];
     const type = types[i % 3];
     
