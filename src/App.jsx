@@ -31,6 +31,7 @@ import day20Video from './img/day20video.mp4'
 import day21Img from './img/day21.png'
 import day22Img from './img/day22.png'
 import day23Img from './img/day23.png'
+import day24Video from './img/day24video.mp4'
 
 // ===== DEBUG SETTING =====
 // Set to a number (1-25) to simulate that date in December, or null for real date
@@ -417,8 +418,15 @@ const MEMORIES = [
     content: 'Talicorn is having a good time on vacation in Cancun. She enjoys the sunshine and has a beautiful bed to sleep on everynight. She tells me she is well relaxed. Although she enjoys spending time with her Papa and draining beers with him, she also tells me she misses her Mama and wants to meet her. She is really looking forwards to meeting her Mama and getting to cuddle with her. With love, from Talicorn and your love in Cancun ❤️☀️🏖️❤️!',
     image: day23Img,
   },
+  {
+    day: 24,
+    type: 'video',
+    title: 'One of The Best Gifts Ever 🥺',
+    content: 'This is one of the best gifts that anyone has ever given me in my life 🥺. I\'m so thankful for you, and every single one of your gifts that you\'ve given me is amazing. This one stood out to me as I wasn\'t expecting this one and it really came as a surprise. Not only that, it also stood out because I get to see our first date from your POV. I think its really cool to see what you were thinking prior to it versus how I experienced it, and it gives our first date even more meaning and depth 🥺. I love you so much wifey, you\'re mine forever ❤️❤️❤️',
+    video: day24Video,
+  },
   ...Array.from({ length: 18 }, (_, i) => {
-    const day = i + 24;
+    const day = i + 25;
     const types = ['text', 'image', 'challenge'];
     const type = types[i % 3];
     
