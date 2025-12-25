@@ -32,6 +32,8 @@ import day21Img from './img/day21.png'
 import day22Img from './img/day22.png'
 import day23Img from './img/day23.png'
 import day24Video from './img/day24video.mp4'
+import day25Img1 from './img/day25_1.png'
+import day25Img2 from './img/day25_2.png'
 
 // ===== DEBUG SETTING =====
 // Set to a number (1-25) to simulate that date in December, or null for real date
@@ -425,7 +427,7 @@ const MEMORIES = [
     content: 'This is one of the best gifts that anyone has ever given me in my life 🥺. I\'m so thankful for you, and every single one of your gifts that you\'ve given me is amazing. This one stood out to me as I wasn\'t expecting this one and it really came as a surprise. Not only that, it also stood out because I get to see our first date from your POV. I think its really cool to see what you were thinking prior to it versus how I experienced it, and it gives our first date even more meaning and depth 🥺. I love you so much wifey, you\'re mine forever ❤️❤️❤️',
     video: day24Video,
   },
-  ...Array.from({ length: 18 }, (_, i) => {
+  ...Array.from({ length: 0 }, (_, i) => {
     const day = i + 25;
     const types = ['text', 'image', 'challenge'];
     const type = types[i % 3];
@@ -440,10 +442,11 @@ const MEMORIES = [
   }),
   {
     day: 25,
-    type: 'text',
-    title: 'Merry Christmas! 🎄',
-    content: 'Merry Christmas, my love! Thank you for being the most amazing gift in my life. Here\'s to many more Christmases together. I love you so much! ❤️🎁',
-    image: null,
+    type: 'double-image',
+    title: 'Merry Catholic Christmas 🎄',
+    content: 'Merry Catholic Christmas, my darling! Thank you for being the most amazing gift in my life. I wish we could spend our Christmas together in person 🥺. Hopefully soon we can spend our Christmases together, watching movies, drinking hot chocolate, giving gifts, and cuddling while wearing matching Christmas pyjamas. For now, I just made me and you, as well as Milky and Talicorn have some festive mood with some Christmas clothes and Christmas decorations! Here\'s to many more Christmases together. I love you so much! ❤️❤️❤️',
+    image1: day25Img1,
+    image2: day25Img2,
   }
 ];
 
@@ -728,14 +731,12 @@ const MemoryModal = ({ memory, onClose }) => {
           </div>
           <h2 className="text-2xl sm:text-3xl font-bold text-center mb-8 text-red-900">{memory.title}</h2>
           
-          {/* TEXT TYPE */}
           {memory.type === 'text' && (
             <div className="bg-white/80 backdrop-blur rounded-xl p-6 sm:p-8 shadow-inner border-2 border-red-200">
               {memory.content}
             </div>
           )}
 
-          {/* IMAGE TYPE */}
           {memory.type === 'image' && (
             <div className="space-y-6">
               <div className="bg-white/80 backdrop-blur rounded-xl p-6 shadow-inner border-2 border-red-200">
@@ -751,7 +752,6 @@ const MemoryModal = ({ memory, onClose }) => {
             </div>
           )}
 
-          {/* VIDEO TYPE */}
           {memory.type === 'video' && (
             <div className="space-y-6">
               <div className="bg-white/80 backdrop-blur rounded-xl p-6 shadow-inner border-2 border-red-200">
@@ -769,7 +769,6 @@ const MemoryModal = ({ memory, onClose }) => {
             </div>
           )}
 
-          {/* ✨ NEW MIXED TYPE (SIDE BY SIDE) ✨ */}
           {memory.type === 'mixed' && (
             <div className="space-y-6">
               <div className="bg-white/80 backdrop-blur rounded-xl p-6 shadow-inner border-2 border-red-200">
@@ -796,12 +795,28 @@ const MemoryModal = ({ memory, onClose }) => {
             </div>
           )}
 
-          {/* CHALLENGE TYPE */}
           {memory.type === 'challenge' && (
             <div className="space-y-4">
               <div className="bg-gradient-to-br from-yellow-400 to-orange-500 rounded-xl p-6 sm:p-8 shadow-2xl border-4 border-yellow-300 transform rotate-1">
                 <div className="bg-white/20 backdrop-blur rounded-lg p-6 border-2 border-white/50">
                   <p className="text-lg sm:text-xl font-bold leading-relaxed text-white text-center drop-shadow-lg">{memory.content}</p>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {memory.type === 'double-image' && (
+            <div className="space-y-6">
+              <div className="bg-white/80 backdrop-blur rounded-xl p-6 shadow-inner border-2 border-red-200">
+                <p className="text-base sm:text-lg leading-relaxed text-gray-700 text-center">{memory.content}</p>
+              </div>
+              
+              <div className="flex flex-col md:flex-row gap-4 items-center justify-center">
+                <div className="w-full md:w-1/2 rounded-xl overflow-hidden shadow-xl border-4 border-white">
+                  <img src={memory.image1} alt="Memory 1" className="w-full h-auto object-cover" />
+                </div>
+                <div className="w-full md:w-1/2 rounded-xl overflow-hidden shadow-xl border-4 border-white">
+                  <img src={memory.image2} alt="Memory 2" className="w-full h-auto object-cover" />
                 </div>
               </div>
             </div>
