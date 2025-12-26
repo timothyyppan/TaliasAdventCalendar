@@ -427,19 +427,6 @@ const MEMORIES = [
     content: 'This is one of the best gifts that anyone has ever given me in my life 🥺. I\'m so thankful for you, and every single one of your gifts that you\'ve given me is amazing. This one stood out to me as I wasn\'t expecting this one and it really came as a surprise. Not only that, it also stood out because I get to see our first date from your POV. I think its really cool to see what you were thinking prior to it versus how I experienced it, and it gives our first date even more meaning and depth 🥺. I love you so much wifey, you\'re mine forever ❤️❤️❤️',
     video: day24Video,
   },
-  ...Array.from({ length: 0 }, (_, i) => {
-    const day = i + 25;
-    const types = ['text', 'image', 'challenge'];
-    const type = types[i % 3];
-    
-    return {
-      day,
-      type,
-      title: `Day ${day} - ${type.charAt(0).toUpperCase() + type.slice(1)}`,
-      content: `Placeholder content for day ${day}. Replace this with your personalized ${type} content.`,
-      image: type === 'image' ? `https://images.unsplash.com/photo-placeholder-${day}?w=800` : null,
-    };
-  }),
   {
     day: 25,
     type: 'double-image',
@@ -447,7 +434,38 @@ const MEMORIES = [
     content: 'Merry Catholic Christmas, my darling! Thank you for being the most amazing gift in my life. I wish we could spend our Christmas together in person 🥺. Hopefully soon we can spend our Christmases together, watching movies, drinking hot chocolate, giving gifts, and cuddling while wearing matching Christmas pyjamas. For now, I just made me and you, as well as Milky and Talicorn have some festive mood with some Christmas clothes and Christmas decorations! Here\'s to many more Christmases together. I love you so much! ❤️❤️❤️',
     image1: day25Img1,
     image2: day25Img2,
-  }
+  },
+  {
+    day: 26,
+    type: 'image',
+    title: '',
+    content: '',
+    image: null,
+  },
+  ...Array.from({ length: 12 }, (_, i) => {
+    const day = i + 26;
+    const types = ['text', 'image', 'challenge'];
+    const type = types[i % 3];
+    
+    // Calculate display date for title
+    const displayDate = day <= 31 ? `Dec ${day}` : `Jan ${day - 31}`;
+
+    return {
+      day,
+      type,
+      title: `${displayDate} - ${type.charAt(0).toUpperCase() + type.slice(1)}`,
+      content: `Waiting for Orthodox Christmas! This is a placeholder for ${displayDate}.`,
+      image: type === 'image' ? `https://images.unsplash.com/photo-placeholder-${day}?w=800` : null,
+    };
+  }),
+  {
+    day: 38,
+    type: 'double-image',
+    title: 'Merry Orthodox Christmas 🎄',
+    content: 'Christ is Born! Glorify Him! Merry Orthodox Christmas my darling. I am so happy we get to celebrate both holidays together. I love you endlessly! ❤️',
+    image1: day25Img1, // You might want to import new images for this
+    image2: day25Img2,
+} 
 ];
 
 // ===== HELPER FUNCTIONS =====
@@ -461,9 +479,30 @@ const getCurrentDate = () => {
 
 const isDayUnlocked = (dayNumber) => {
   const currentDate = getCurrentDate();
+  const currentMonth = currentDate.getMonth(); // 0 = Jan, 11 = Dec
   const currentDay = currentDate.getDate();
-  const currentMonth = currentDate.getMonth();
-  return currentMonth === 11 && currentDay >= dayNumber;
+
+  // Logic for Days 1-31 (December)
+  if (dayNumber <= 31) {
+    // If it's currently December
+    if (currentMonth === 11) {
+      return currentDay >= dayNumber;
+    }
+    // If it's January (or later), all December days are unlocked
+    if (currentMonth === 0) {
+      return true;
+    }
+  } 
+  // Logic for Days 32-38 (January 1-7)
+  else {
+    const janDay = dayNumber - 31; // Day 32 is Jan 1, Day 38 is Jan 7
+    // Must be January
+    if (currentMonth === 0) {
+      return currentDay >= janDay;
+    }
+  }
+  
+  return false;
 };
 
 // Device detection hook
@@ -833,118 +872,139 @@ const MemoryModal = ({ memory, onClose }) => {
     </div>
   );
 };
-
-// ===== ADVENT GRID COMPONENT =====
 const AdventGrid = ({ openedDays, onDayClick }) => {
-  const { isMobile, isIPhone16ProMax } = useDeviceType();
-  const regularDays = MEMORIES.filter(m => m.day <= 24);
-  const christmasDay = MEMORIES.find(m => m.day === 25);
+  const { isMobile } = useDeviceType();
+  
+  // Split the days into groups
+  const decDays = MEMORIES.filter(m => m.day >= 1 && m.day <= 24);
+  const catholicXmas = MEMORIES.find(m => m.day === 25);
+  const interDays = MEMORIES.filter(m => m.day >= 26 && m.day <= 37);
+  const orthodoxXmas = MEMORIES.find(m => m.day === 38);
 
-  // ===== UPDATED TIGHTER SIZING =====
-  // 1. Columns: Using 5 columns on mobile makes the squares much smaller than 3 or 4
+  // Dynamic grid columns
   const gridCols = isMobile ? 'grid-cols-4' : 'grid-cols-6'; 
+  const gridGap = isMobile ? 'gap-1.5' : 'gap-3';
   
-  // 2. Gap: Reduced to gap-1 (4px) or gap-0.5 (2px) for a very tight grid
-  const gridGap = isMobile ? 'gap-1' : 'gap-4';
-  
-  // 3. Icons: Smallest readable size
-  const iconSize = isMobile ? 'w-3 h-3' : 'w-4 h-4';
-  
-  // 4. Text: Hardcoded to 10px on mobile
-  const textSize = isMobile ? 'text-[10px]' : 'text-2xl';
-  
-  // 5. Margin: Space between Icon and Number (Removed on mobile)
-  const iconMargin = isMobile ? 'mb-0' : 'mb-1';
+  // Helper to render a standard square button
+  const renderSquare = (memory) => {
+    const isUnlocked = isDayUnlocked(memory.day);
+    const isOpened = openedDays.includes(memory.day);
+    // Display logic: show calendar date (e.g., "1" for Jan 1st instead of "32")
+    const displayNum = memory.day > 31 ? memory.day - 31 : memory.day;
+    const monthLabel = memory.day > 31 ? 'JAN' : null;
 
-  // 6. Day 25 Sizing: Drastically reduced padding
-  const day25MaxW = isMobile ? 'max-w-[200px]' : 'max-w-lg';
-  const day25Icon = isMobile ? 'w-4 h-4' : 'w-6 h-6';
-  const day25Text = isMobile ? 'text-base' : 'text-5xl';
-  const day25Padding = isMobile ? 'py-1 px-4' : 'py-8 px-6'; // Very small padding
-  const day25LabelSize = isMobile ? 'text-[10px]' : 'text-xl';
+    return (
+      <button
+        key={memory.day}
+        onClick={() => isUnlocked && onDayClick(memory.day)}
+        disabled={!isUnlocked}
+        className={`
+          aspect-square rounded-lg flex flex-col items-center justify-center
+          transition-all duration-300 relative overflow-hidden group
+          ${!isUnlocked 
+            ? 'bg-red-950/60 border border-red-700/30 opacity-60' 
+            : isOpened 
+              ? 'bg-gradient-to-br from-yellow-500 to-amber-600 border border-yellow-300/70 shadow-md' 
+              : 'bg-gradient-to-br from-green-600 to-green-700 border border-green-400/50 hover:scale-105 shadow-sm'}
+        `}
+      >
+        <div className="mb-1">
+          {!isUnlocked ? (
+            <Lock className="w-3 h-3 sm:w-4 sm:h-4 text-red-300/50" />
+          ) : isOpened ? (
+            <Check className="w-3 h-3 sm:w-4 sm:h-4 text-white" strokeWidth={3} />
+          ) : (
+            <Gift className="w-3 h-3 sm:w-4 sm:h-4 text-white group-hover:animate-bounce" />
+          )}
+        </div>
+        <div className="flex flex-col items-center leading-none">
+          {monthLabel && <span className="text-[8px] sm:text-[10px] font-bold text-white/80">{monthLabel}</span>}
+          <span className={`text-lg sm:text-2xl font-bold ${!isUnlocked ? 'text-red-300/50' : 'text-white'}`}>
+            {displayNum}
+          </span>
+        </div>
+      </button>
+    );
+  };
+
+  // Helper to render a Holiday Banner (Day 25 & 38)
+  const renderHolidayBanner = (memory, label, bgClass, borderClass) => {
+    if (!memory) return null;
+    const isUnlocked = isDayUnlocked(memory.day);
+    const isOpened = openedDays.includes(memory.day);
+
+    return (
+      <div className="col-span-full py-4">
+        <button
+          onClick={() => isUnlocked && onDayClick(memory.day)}
+          disabled={!isUnlocked}
+          className={`
+            w-full rounded-xl flex flex-row items-center justify-center gap-4
+            transition-all duration-300 relative overflow-hidden py-4 px-4
+            ${!isUnlocked 
+              ? 'bg-red-950/50 border-2 border-red-700/30 opacity-50' 
+              : isOpened 
+                ? 'bg-gradient-to-r from-yellow-400 via-amber-500 to-yellow-400 border-2 border-yellow-200 shadow-lg' 
+                : bgClass + ' ' + borderClass + ' animate-pulse'}
+          `}
+        >
+          <div className="flex flex-col items-center">
+             {!isUnlocked ? <Lock className="w-6 h-6 text-red-300/50" /> : <Star className="w-6 h-6 text-white fill-white animate-spin-slow" />}
+          </div>
+          <div className="text-center">
+            <div className={`text-2xl sm:text-3xl font-bold leading-tight ${!isUnlocked ? 'text-red-300/50' : 'text-white'}`}>
+              {label}
+            </div>
+            {isUnlocked && <div className="text-white/90 text-xs sm:text-sm font-medium tracking-wider uppercase mt-1">Open Me!</div>}
+          </div>
+          <div className="flex flex-col items-center">
+             {!isUnlocked ? <Lock className="w-6 h-6 text-red-300/50" /> : <Star className="w-6 h-6 text-white fill-white animate-spin-slow" />}
+          </div>
+        </button>
+      </div>
+    );
+  };
 
   return (
-    <div className={`w-full mx-auto space-y-2 ${isMobile ? 'max-w-xs' : 'max-w-xl'}`}>
-      {/* Days 1-24 */}
-      <div className={`grid ${gridCols} ${gridGap}`}>
-        {regularDays.map((memory) => {
-          const isUnlocked = isDayUnlocked(memory.day);
-          const isOpened = openedDays.includes(memory.day);
-
-          return (
-            <button
-              key={memory.day}
-              onClick={() => isUnlocked && onDayClick(memory.day)}
-              disabled={!isUnlocked}
-              className={`
-                aspect-square rounded-lg flex flex-col items-center justify-center
-                transition-all duration-300 relative overflow-hidden
-                ${!isUnlocked ? 'bg-red-950/50 border border-red-700/30 opacity-50 cursor-not-allowed'
-                  : isOpened ? 'bg-gradient-to-br from-yellow-500 to-amber-600 border border-yellow-300/70 shadow-sm cursor-pointer'
-                  : 'bg-gradient-to-br from-green-600 to-green-700 border border-green-400/50 cursor-pointer shadow-sm'}
-              `}
-            >
-              {/* Applied the smaller margin here */}
-              <div className={iconMargin}>
-                {!isUnlocked ? (
-                  <Lock className={iconSize + ' text-red-300/50'} />
-                ) : isOpened ? (
-                  <Check className={iconSize + ' text-white'} strokeWidth={3} />
-                ) : (
-                  <Gift className={iconSize + ' text-white'} />
-                )}
-              </div>
-              <div className={`${textSize} font-bold leading-none ${!isUnlocked ? 'text-red-300/50' : 'text-white'}`}>
-                {memory.day}
-              </div>
-              {isUnlocked && !isOpened && (
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent animate-shimmer" />
-              )}
-            </button>
-          );
-        })}
+    <div className={`w-full mx-auto pb-20 ${isMobile ? 'max-w-xs' : 'max-w-2xl'}`}>
+      
+      {/* SECTION 1: DECEMBER 1-24 */}
+      <div className={`grid ${gridCols} ${gridGap} mb-4`}>
+        {decDays.map(renderSquare)}
       </div>
 
-      {/* Day 25 - Compact Version */}
-      {christmasDay && (
-        <div className="flex justify-center">
-          <button
-            onClick={() => isDayUnlocked(25) && onDayClick(25)}
-            disabled={!isDayUnlocked(25)}
-            className={`
-              w-full ${day25MaxW} rounded-xl flex flex-col items-center justify-center
-              transition-all duration-300 relative overflow-hidden ${day25Padding}
-              ${!isDayUnlocked(25) ? 'bg-red-950/50 border-2 border-red-700/30 opacity-50 cursor-not-allowed'
-                : openedDays.includes(25) ? 'bg-gradient-to-br from-yellow-400 via-yellow-500 to-amber-600 border-2 border-yellow-300 shadow-lg cursor-pointer'
-                : 'bg-gradient-to-br from-yellow-500 via-amber-500 to-yellow-600 border-2 border-yellow-400 cursor-pointer animate-pulse'}
-            `}
-          >
-            <div className={iconMargin}>
-              {!isDayUnlocked(25) ? (
-                <Lock className={day25Icon + ' text-red-300/50'} />
-              ) : openedDays.includes(25) ? (
-                <Check className={day25Icon + ' text-white'} strokeWidth={3} />
-              ) : (
-                <Gift className={day25Icon + ' text-white animate-bounce'} />
-              )}
-            </div>
-            <div className="text-center">
-              <div className={`${day25Text} font-bold leading-tight ${!isDayUnlocked(25) ? 'text-red-300/50' : 'text-white'}`}>25</div>
-              {isDayUnlocked(25) && (
-                <div className={`text-white ${day25LabelSize} font-semibold leading-none mt-0.5`}>Christmas!</div>
-              )}
-            </div>
-          </button>
-        </div>
+      {/* CATHOLIC CHRISTMAS (DAY 25) */}
+      {renderHolidayBanner(
+        catholicXmas, 
+        "Catholic Christmas", 
+        "bg-gradient-to-r from-red-600 via-red-500 to-red-600",
+        "border-2 border-red-300"
       )}
 
-      <style>{`
-        @keyframes shimmer {
-          0% { transform: translateX(-100%); }
-          100% { transform: translateX(100%); }
-        }
-        .animate-shimmer { animation: shimmer 3s infinite; }
-      `}</style>
+      {/* SECTION 2: DEC 26 - JAN 6 */}
+      <div className="relative my-6 text-center">
+        <div className="absolute inset-0 flex items-center" aria-hidden="true">
+          <div className="w-full border-t border-white/20"></div>
+        </div>
+        <div className="relative flex justify-center">
+          <span className="bg-red-900/40 backdrop-blur px-3 py-1 text-xs text-red-100 rounded-full border border-white/10">
+            Countdown to Orthodox Christmas
+          </span>
+        </div>
+      </div>
+
+      <div className={`grid ${gridCols} ${gridGap} mb-4`}>
+        {interDays.map(renderSquare)}
+      </div>
+
+      {/* ORTHODOX CHRISTMAS (DAY 38) */}
+      {renderHolidayBanner(
+        orthodoxXmas, 
+        "Orthodox Christmas", 
+        "bg-gradient-to-r from-purple-600 via-indigo-500 to-purple-600",
+        "border-2 border-purple-300"
+      )}
+
     </div>
   );
 };
@@ -1059,6 +1119,17 @@ const App = () => {
   return (
     <div className="min-h-screen max-h-screen bg-gradient-to-br from-red-900 via-red-800 to-green-900 relative overflow-hidden">
       <style>{`
+
+      .custom-scrollbar::-webkit-scrollbar {
+        width: 6px;
+      }
+      .custom-scrollbar::-webkit-scrollbar-track {
+        background: rgba(0, 0, 0, 0.1);
+      }
+      .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.3);
+        border-radius: 10px;
+      }
         html, body {
           overscroll-behavior: none;
           position: fixed;
@@ -1164,7 +1235,7 @@ const App = () => {
         </header>
 
         {/* Advent Grid - Centered and taking up remaining space */}
-        <div className="flex-1 flex items-center justify-center overflow-hidden">
+        <div className="flex-1 w-full overflow-y-auto overflow-x-hidden custom-scrollbar">
           <AdventGrid openedDays={openedDays} onDayClick={handleDayClick} />
         </div>
 
