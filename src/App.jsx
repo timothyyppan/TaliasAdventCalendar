@@ -34,6 +34,7 @@ import day23Img from './img/day23.png'
 import day24Video from './img/day24video.mp4'
 import day25Img1 from './img/day25_1.png'
 import day25Img2 from './img/day25_2.png'
+import day26Img from './img/day26.png'
 
 // ===== DEBUG SETTING =====
 // Set to a number (1-25) to simulate that date in December, or null for real date
@@ -438,12 +439,12 @@ const MEMORIES = [
   {
     day: 26,
     type: 'image',
-    title: '',
-    content: '',
-    image: null,
+    title: 'Kiss Marks 💋',
+    content: 'I know I didn\'t show it in the moment, but when you started leaving kiss marks all over me I was secretly so happy inside. I wished I showed you how much I loved it but I was trying to be nonchalant here lol. I think your kiss marks look beautiful on me and I want you to do it more often. I really want to walk around in public them on and show everyone that my girlfriend loves me 🥺🥺. Also, if you want to 🥺 can you make me a hoodie with your kiss marks all over it? I would love ot wear it 🥺🥺. I just want all of your kisses and I want to give you all of mine. I love you so much baby, I miss you the most ❤️🙂‍↔️❤️',
+    image: day26Img,
   },
   ...Array.from({ length: 12 }, (_, i) => {
-    const day = i + 26;
+    const day = i + 27;
     const types = ['text', 'image', 'challenge'];
     const type = types[i % 3];
     
