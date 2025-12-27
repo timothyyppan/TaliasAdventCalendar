@@ -35,6 +35,8 @@ import day24Video from './img/day24video.mp4'
 import day25Img1 from './img/day25_1.png'
 import day25Img2 from './img/day25_2.png'
 import day26Img from './img/day26.png'
+import day27Img1 from './img/day27_1.png'
+import day27Img2 from './img/day27_2.png'
 
 // ===== DEBUG SETTING =====
 // Set to a number (1-25) to simulate that date in December, or null for real date
@@ -443,8 +445,16 @@ const MEMORIES = [
     content: 'I know I didn\'t show it in the moment, but when you started leaving kiss marks all over me I was secretly so happy inside. I wished I showed you how much I loved it but I was trying to be nonchalant here lol. I think your kiss marks look beautiful on me and I want you to do it more often. I really want to walk around in public them on and show everyone that my girlfriend loves me 🥺🥺. Also, if you want to 🥺 can you make me a hoodie with your kiss marks all over it? I would love ot wear it 🥺🥺. I just want all of your kisses and I want to give you all of mine. I love you so much baby, I miss you the most ❤️🙂‍↔️❤️',
     image: day26Img,
   },
+  {
+    day: 27,
+    type: 'double-image',
+    title: 'Me and Luna',
+    content: 'Baby look, its a picture of me and Luna together that I took yesterday! I really wish you were here with me in person so you can meet her. I feel like you would love her and she would love you. I hope you can one day come to Canada and see us, then we can go on so many walks and be cute! I can also imagine us having a dog together when we\'re living together, and hopefully our dog can be friends with Luna and play with her 🥺. Can you please make this dream come true with me 🥺? I love you so much darling ❤️❤️❤️',
+    image1: day27Img1,
+    image2: day27Img2,
+  },
   ...Array.from({ length: 12 }, (_, i) => {
-    const day = i + 27;
+    const day = i + 28;
     const types = ['text', 'image', 'challenge'];
     const type = types[i % 3];
     
