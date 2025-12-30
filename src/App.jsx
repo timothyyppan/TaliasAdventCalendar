@@ -37,6 +37,10 @@ import day25Img2 from './img/day25_2.png'
 import day26Img from './img/day26.png'
 import day27Img1 from './img/day27_1.png'
 import day27Img2 from './img/day27_2.png'
+import day28Img1 from './img/day28_1.png'
+import day28Img2 from './img/day28_2.png'
+import day29Img from './img/day29.png'
+import day30Img from './img/day30.png'
 
 // ===== DEBUG SETTING =====
 // Set to a number (1-25) to simulate that date in December, or null for real date
@@ -453,8 +457,30 @@ const MEMORIES = [
     image1: day27Img1,
     image2: day27Img2,
   },
-  ...Array.from({ length: 12 }, (_, i) => {
-    const day = i + 28;
+  {
+    day: 28,
+    type: 'double-image',
+    title: 'Moments before disaster...',
+    content: 'This was the picture you took of me right before I got absolutely slammed at the bar. I remember that I wasn\'t that drunk at all and felt that I could double fist the two drinks. I was so happy in this photo because I got to drink and be with my beloved darling 🥺. Unfortunately, after this I threw up twice in the washroom and was too drunk to function. The reason why I loved this night wasn\'t because I got to drink alcohol, but it was because I got to spend time with you, and that you took very good care of me when I was drunk 🥺. You guided me when I was stumbling, gave me water to sober me up, and called the taxi so we could get home 🥺🥺. What\'s even funnier to me is that afterwards in the middle of the night, I walked to the washroom and peed in the dark without remembering a thing, and only finding out about it later from you. I understand why you don\'t want me to drink as much and I know its for my own good, thank you baby, I love you so much darling, thank you for always taking such good care of me ❤️❤️❤️',
+    image1: day28Img1,
+    image2: day28Img2,
+  },
+  {
+    day: 29,
+    type: 'image',
+    title: 'You\'re Braver than I am',
+    content: 'Baby, this is the chicken testicle you ate when me and you went to eat hotpot with Matthew and his friends in Hong Kong 🥺. I remember when one of them tried to peer pressure me into eating the chicken testicle first and I didn\'t want to do it so I started making up excuses. But then they asked you and you said yes which meant that I had to do it with you. In my head I was like 😧😧😧😧😧😧😧 because I really didn\'t want to. You were so brave that you just put it straight into your mouth and ate it, while you and everyone else watched me spit it out, gag, and almost throw up 😔. Either way it is still a good memory because you got to meet my friend Matthew and it gave you a better impression of my friends that I have, and that one of my friends from home got to meet you! I love you so much wifey 🥺🥺❤️❤️😘😘',
+    image: day29Img,
+  },
+    {
+    day: 30,
+    type: 'image',
+    title: 'More Matching Items!',
+    content: 'Baby, me and you matching more! I was so excited when you asked me if I wanted to match shoes with you. I had secretly been wanting to match with you but I was too shy to say anything. So I purposefully started to \'complain\' about my shoes being broken so that hopefully you would ask if we could match 🥺. You did end up telling me to and I was so happy because we get to be twinning for more things!!! I love twinning with you because you\'re my soulmate, and I want everything that I have to be same or matching with you 🥺. I love you the most darling ❤️❤️❤️',
+    image: day30Img,
+  },
+  ...Array.from({ length: 9 }, (_, i) => {
+    const day = i + 31;
     const types = ['text', 'image', 'challenge'];
     const type = types[i % 3];
     
