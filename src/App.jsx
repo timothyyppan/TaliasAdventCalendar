@@ -41,6 +41,12 @@ import day28Img1 from './img/day28_1.png'
 import day28Img2 from './img/day28_2.png'
 import day29Img from './img/day29.png'
 import day30Img from './img/day30.png'
+import day31Img from './img/day31.png'
+import day32Img from './img/day32.png'
+import day33Img from './img/day33.png'
+import day35Img1 from './img/day35_1.png'
+import day35Img2 from './img/day35_2.png'
+import day36Video from './img/day36.mp4'
 
 // ===== DEBUG SETTING =====
 // Set to a number (1-25) to simulate that date in December, or null for real date
@@ -479,8 +485,50 @@ const MEMORIES = [
     content: 'Baby, me and you matching more! I was so excited when you asked me if I wanted to match shoes with you. I had secretly been wanting to match with you but I was too shy to say anything. So I purposefully started to \'complain\' about my shoes being broken so that hopefully you would ask if we could match 🥺. You did end up telling me to and I was so happy because we get to be twinning for more things!!! I love twinning with you because you\'re my soulmate, and I want everything that I have to be same or matching with you 🥺. I love you the most darling ❤️❤️❤️',
     image: day30Img,
   },
+  {
+    day: 31,
+    type: 'image',
+    title: 'A Reflection of Our Year Together',
+    content: 'Baby, its the end of the year and I wanted to reflect on our year together. This year has been so special to me because its the first year that we\'ve been together as a couple. We\'ve had so many amazing memories together, and I cherish every single one of them everyday. From our first date, to our trips together, to just spending time together at home, every moment with you is special to me ❤️❤️❤️. Even though we fought a lot this year, it doesn\'t worry me as you\'re my soulmate darling. I know that we will definetly fight in the future and that each time we do, it makes us a stronger couple. Through this year, I have seen growth both in myself and in you as individuals, and as a couple. No doubt will we continue to grow and change in the future, but I know we will do so for the better and always together 🥺. I\'m so grateful to have you in my life, and I can\'t wait to see what the future holds for us. I love you so much baby, and I wish you a happy new year! ❤️❤️❤️ (By the way, the picture of you is to end the year with a cute picture of you)',
+    image: day31Img,
+  },
+  {
+    day: 32,
+    type: 'image',
+    title: 'Happy New Year My Love!',
+    content: 'Happy new year my wifey! Its officially 2026!. This is the year that we get to spend the entirety of it as a couple! I also hope this is the year that we get to finally be together in person. I can\'t wait to make more memories with you this year, and to continue building our life together. I want to start off the new year by promising that I will try to be a better boyfriend, to listen to you, to give you more gifts and actions, to argue less, to be stinky less, and to carry more weight for you (both emotionally and physically), like the picture below where you made me carry everything lol. I want to be the best I can for you darling because you deserve it! I love you so much wifey, and I hope this year brings us even more happiness and love ❤️❤️❤️',
+    image: day32Img,
+  },
+  {
+    day: 33,
+    type: 'image',
+    title: 'My Goofy Hat Picture',
+    content: 'Baby, one of the first memories I have of us is when we were sending each other photos and I sent you my picture of me wearing a goofy hat. To me I just wanted to show you the hat and I didn\'t think too much of it. But then you started raving about how much you loved the picture and how cute I was standing there. To be honest, I didn\'t see what you saw in that picture as it looked like its just me chilling there. You loved it so much that you even made it your background picture. I think this is so cute because even in the small things about myself that I find mundane, you always find something positive about it. Its something that I love about you and appreciate a lot as it always brightens my day when you compliment me. I love you so much darling ❤️🥹😍',
+    image: day33Img,
+  },
+  {
+    day: 34,
+    type: 'text',
+    title: 'My Dream Honeymoon with You',
+    content: 'Darling, I think it would be fun to start imagining what our honeymoon would look like. We really should discuss it more in depth together. Personally, I want to go all out and do like a 3 month or more honeymoon where we go to many different countries and explore the world together. I want you to come to North America and travel around Canada, USA, and Mexico. I want to go to South America and visit Brazil, Argentina, Costa Rica. I want you to go on a cruise with me through the Caribbean, and visit individual islands such as Cuba, Bahamas, Jamaica, Dominica, and Barbados. I want to go all through Europe as well, to the UK, France, Italy, Spain, Portugal, Germany, Greece, Italy, the Baltics, Central Europe. I also specifically want to spend a lot of time in Russia as I want to learn more about your culture, and especially visit your old hometown of Yakutsk to visit your family. I want to visit Africa, to Morocco, Tunisia, Egypt, and South Africa. I want to go to the Middle East and visit Cyprus, Turkey, UAE, and Saudi Arabia. I want us to also visit Central Asia together, to Kazakhstan and Georgia. Finally, I want us to visit Asia together, to China, Japan, South Korea, Taiwan, Hong Kong, Thailand, and Singapore. I want us to make so many memories together and explore the world as newlyweds. I know I listed a lot of countries and that you\'re probably gonna say no to a lot of them. But I think it would be amazing to have these experiences together. I love you so much darling, and I can\'t wait to start our life together ❤️❤️❤️',
+  },
+  {
+    day: 35,
+    type: 'double-image',
+    title: 'Sharing Hickies',
+    content: 'Baby look! We\'re matching hickies here. This is one of the earlier times when we just started touching each other and being intimate. You let me put a hickey on you and you put one on me. I love matching with you so much and I love making sure that anyone who sees that mark knows that you\'re mine, and likewise when everyone sees my mark, they know that I\'m yours 🥺. But now you don\'t let me put hickies on you anymore 😔. I want to always be able to match with you, and make sure everyone knows that YOU\'RE MINE!!! I love you so much darling, and I can\'t wait until I can kiss your neck again in person 🥹❤️❤️❤️',
+    image1: day35Img1,
+    image2: day35Img2,
+  },
+  {
+    day: 36,
+    type: 'video',
+    title: 'Another Chaotic Video of Just Us ❤️',
+    content: 'I found this video of us when we were just being silly and goofy together. I have no idea why this video was taken but I\'m glad you did as its a beautiful video to look back on and reminisce on. It starts off with me pushing on your back because I think I was trying to crack it, but your back hurts a lot from a massage if I remember correctly. This is also right around the time when we made our promise rings so we were showing them off here! And just earlier before the video was filmed, we went on to the FamilyMart to buy Dubai Chocolate and Kinder Eggs for you to eat. I can\'t wait until we can have nights at home like this again as I miss them so much. Just being around you makes me feel so good, and getting to touch you and buy you things would make me the happiest man in the world. I love you so much my wifey ❤️❤️❤️',
+    video: day36Video,
+  },
   ...Array.from({ length: 9 }, (_, i) => {
-    const day = i + 31;
+    const day = i + 37;
     const types = ['text', 'image', 'challenge'];
     const type = types[i % 3];
     
