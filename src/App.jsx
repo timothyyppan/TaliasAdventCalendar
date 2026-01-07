@@ -527,8 +527,14 @@ const MEMORIES = [
     content: 'I found this video of us when we were just being silly and goofy together. I have no idea why this video was taken but I\'m glad you did as its a beautiful video to look back on and reminisce on. It starts off with me pushing on your back because I think I was trying to crack it, but your back hurts a lot from a massage if I remember correctly. This is also right around the time when we made our promise rings so we were showing them off here! And just earlier before the video was filmed, we went on to the FamilyMart to buy Dubai Chocolate and Kinder Eggs for you to eat. I can\'t wait until we can have nights at home like this again as I miss them so much. Just being around you makes me feel so good, and getting to touch you and buy you things would make me the happiest man in the world. I love you so much my wifey ❤️❤️❤️',
     video: day36Video,
   },
-  ...Array.from({ length: 9 }, (_, i) => {
-    const day = i + 37;
+  {
+    day: 37,
+    type: 'text',
+    title: 'Best Girlfriend Ever',
+    content: 'Baby, you\'re the best girlfriend ever. You\'re so loving, caring, beautiful, funny, and understanding. I can\'t believe how lucky I am to have you in my life. You always know how to make me smile and laugh, even on my worst days 🥺🥺🥺. You support me in everything I do and encourage me to be the best version of myself. You also challenge me which forces me to grow in ways I couldn\'t have imagined before. Darling, I love how we can talk about anything and everything, and how we always have each other\'s backs. You make me feel so special and loved, and I hope I do the same for you. You\'re the best woman to ever be born and I am thankful to your parents for raising such a good woman. You\'re all that I could ever ask for in a partner and YOU are perfect for ME. I love you more than words can express my wifey ❤️❤️❤️',
+  },
+  ...Array.from({ length: 0 }, (_, i) => {
+    const day = i + 38;
     const types = ['text', 'image', 'challenge'];
     const type = types[i % 3];
     
@@ -545,11 +551,9 @@ const MEMORIES = [
   }),
   {
     day: 38,
-    type: 'double-image',
+    type: 'text',
     title: 'Merry Orthodox Christmas 🎄',
-    content: 'Christ is Born! Glorify Him! Merry Orthodox Christmas my darling. I am so happy we get to celebrate both holidays together. I love you endlessly! ❤️',
-    image1: day25Img1, // You might want to import new images for this
-    image2: day25Img2,
+    content: 'Merry Orthodox Christmas my darling ❤️❤️❤️ ✝️✝️✝️! Although I haven\'t celebrated Orthodox Christmas before, I want to make it special for you as its important to you. I hope that one day we can celebrate it together in person, and make it a tradition for us. For now, I wanted to say a prayer together to properly celebrate Orthodox Christmas together.\n\nHeavenly Father, On this holy day of Orthodox Christmas, we thank You for the gift of Your light and the love that fills our hearts. We are especially grateful for the blessing of our relationship—for the joy, the laughter, and the strength we give one another even across the distance. We ask for Your blessing upon our journey together. May our bond grow deeper with every passing day, rooted in patience, understanding, and unwavering loyalty. Guide us as we walk this path, protecting our happiness and keeping our hearts united in hope. We pray for the day we can celebrate together in person, and until then, keep us safe in each other’s love. May our future be bright, our smiles be many, and our lives be filled with the peace that this season brings. Amen.\n\nI love you so much wifey, merry christmas ❤️❤️❤️',
 } 
 ];
 
@@ -856,7 +860,7 @@ const MemoryModal = ({ memory, onClose }) => {
           <h2 className="text-2xl sm:text-3xl font-bold text-center mb-8 text-red-900">{memory.title}</h2>
           
           {memory.type === 'text' && (
-            <div className="bg-white/80 backdrop-blur rounded-xl p-6 sm:p-8 shadow-inner border-2 border-red-200">
+            <div className="bg-white/80 backdrop-blur rounded-xl p-6 sm:p-8 shadow-inner border-2 border-red-200 whitespace-pre-line">
               {memory.content}
             </div>
           )}
